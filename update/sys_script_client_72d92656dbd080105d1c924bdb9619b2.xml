@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>displayes error message when the priority field is changed to 1 and the state feedback is set to "Awaiting Feedback" beforehand, &#13;
+&#13;
+note : this is only executed when the priority field is changed, setting the state to "Awaiting Feedback" when the priority is already set to 1 wont display the error message, to achieve this, a similar script must be added to the state field.</description>
+        <field>priority</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>ClientScriptOnChange1</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate){
+	if(isLoading|| newValue === ''){
+		return;
+	}
+	
+	var StateVal = g_form.getValue("state");
+	if(newValue === '1' && StateVal === '16'){
+	g_form.addErrorMessage("Requests with Critical Priority will be first sent to management. oh and the State field value is : " + StateVal);	
+	}else{
+		g_form.clearMessages();
+	}
+	
+	
+	
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-10-07 09:27:29</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>72d92656dbd080105d1c924bdb9619b2</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>ClientScriptOnChange1</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_script_client_72d92656dbd080105d1c924bdb9619b2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-10-07 10:27:04</sys_updated_on>
+        <table>x_58872_needit_needit</table>
+        <type>onChange</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>
